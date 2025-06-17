@@ -1,6 +1,5 @@
-
 aiohttp~=3.9.0
-pyrofork @ git+https://github.com/pyrofork/pyrofork.git
+pyrofork @ git+https://github.com/pyrofork/pyrofork.git@main
 beautifulsoup4~=4.8.0
 Pillow~=10.1.0
 tgcrypto
