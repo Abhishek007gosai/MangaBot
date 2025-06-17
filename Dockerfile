@@ -7,9 +7,13 @@ ENV PYTHONDONTWRITEBYTECODE=1
 # Turns off buffering for easier container logging
 ENV PYTHONUNBUFFERED=1
 
+# Fix for setuptools version metadata issue
+ENV SETUPTOOLS_USE_DISTUTILS=stdlib
+
 WORKDIR /app
 
-RUN python -m pip install --upgrade pip setuptools wheel
+# Upgrade build tools to fix version metadata issue
+RUN python -m pip install --upgrade "pip==24.0" "setuptools==68.2.2" "wheel==0.42.0"
 
 # Install pip requirements
 COPY requirements.txt .
