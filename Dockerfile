@@ -1,23 +1,26 @@
-# For more information, please refer to https://aka.ms/vscode-docker-python
-FROM python
-
-# Keeps Python from generating .pyc files in the container
-ENV PYTHONDONTWRITEBYTECODE=1
-
-# Turns off buffering for easier container logging
-ENV PYTHONUNBUFFERED=1
+FROM python:3.10-slim-bookworm
 
 WORKDIR /app
 
-RUN python -m pip install --upgrade pip setuptools wheel
+RUN apt-get update && \
+    apt-get install -y --no-install-recommends \
+    gcc \
+    python3-dev \
+    git \
+    ca-certificates \
+    && rm -rf /var/lib/apt/lists/*
 
-# Install pip requirements
+# Update CA certificates
+RUN update-ca-certificates
+
 COPY requirements.txt .
-RUN python -m pip install --no-cache-dir -r requirements.txt
 
-COPY . /app
+# Replace git+https with git+ssh to avoid authentication issues
+RUN sed -i 's|git+https://github.com|git+ssh://git@github.com|' requirements.txt && \
+    sed -i '/--use-pep517/d' requirements.txt && \
+    python -m pip install --no-cache-dir --upgrade pip && \
+    pip install --no-cache-dir -r requirements.txt
 
-RUN alembic upgrade head
+COPY . .
 
-# During debugging, this entry point will be overridden. For more information, please refer to https://aka.ms/vscode-docker-python-debug
-CMD ["bash", "start.sh"]
+CMD ["python", "main.py"]
