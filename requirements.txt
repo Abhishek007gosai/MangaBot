@@ -1,5 +1,6 @@
+--use-pep517
 aiohttp~=3.9.0
-pyrofork
+pyrofork @ git+https://github.com/pyrofork/pyrofork.git
 beautifulsoup4~=4.8.0
 Pillow~=10.1.0
 tgcrypto
@@ -14,4 +15,4 @@ alembic
 loguru
 flask
 gunicorn
-httpx # New Request 
+httpx
