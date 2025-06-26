@@ -55,7 +55,7 @@ class MangaParkClient(MangaClient):
                     links.append(chapter_url)
                     
         names = [sub.split('/')[5] for sub in links]
-        texts = [re.sub('^\d+', '', s).replace('-', ' ') for s in names]
+        texts = [re.sub(r'^\d+', '', s).replace('-', ' ') for s in names]
     
         return list(map(lambda x: MangaChapter(self, x[0], x[1], manga, []), zip(texts, links)))
         
