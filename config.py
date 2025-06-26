@@ -6,7 +6,7 @@ env_vars = {
   #Get For @BotFather
   "BOT_TOKEN": "",
   # Get For tembo.io
-  "DATABASE_URL_PRIMARY": "postgresql://animehub_user:IzpABWADKiOnSgw9oCIeBcFZB6DWrGXX@dpg-d1en6padbo4c73d4qr1g-a/animehub",
+  "DATABASE_URL": "",
   # Logs Channel Username Without @
   "CACHE_CHANNEL": "ANTIKPOPSQUAD0000",
   # Force Subs Channel username without @
