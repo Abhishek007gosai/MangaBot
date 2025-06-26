@@ -26,6 +26,9 @@ from plugins.client import clean
 from tools.aqueue import AQueue
 from tools.flood import retry_on_flood
 
+from pyrogram import Client
+import os
+
 mangas: Dict[str, MangaCard] = dict()
 chapters: Dict[str, MangaChapter] = dict()
 pdfs: Dict[str, str] = dict()
@@ -119,10 +122,17 @@ def get_buttons_for_options(user_options: int):
     return InlineKeyboardMarkup(buttons)
 
 
-bot = Client('bot',
-             api_id=int(env_vars.get('API_ID')),
-             api_hash=env_vars.get('API_HASH'),
-             bot_token=env_vars.get('BOT_TOKEN'),
+
+
+API_ID = int(os.environ.get("API_ID"))
+API_HASH = os.environ.get("API_HASH")
+BOT_TOKEN = os.environ.get("BOT_TOKEN")
+
+app = Client("bot", api_id=API_ID, api_hash=API_HASH, bot_token=BOT_TOKEN)
+
+if __name__ == "__main__":
+    app.run()
+
              max_concurrent_transmissions=3)
 
 pdf_queue = AQueue()
