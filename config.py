@@ -2,7 +2,7 @@ env_vars = {
   # Get From my.telegram.org
   "API_HASH": "c9599a5aa61ee8ca4f5e778d20c61f24",
   # Get From my.telegram.org
-  "API_ID": "23537462",
+  "API_ID": "21490331",
   #Get For @BotFather
   "BOT_TOKEN": "",
   # Get For tembo.io
